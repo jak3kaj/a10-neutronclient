@@ -11,7 +11,7 @@ setup(
     author_email = "dougw@a10networks.com",
     description = "A10 Networks Neutron Client Extensions",
     license = "Apache",
-    keywords = "a10 adc slb load balancer openstack neutron lbaas",
+    keywords = "a10 adc slb load balancer openstack neutron lbaas cli",
     url = "https://github.com/a10networks/a10-horizon",
 
     long_description = open('README.md').read(),
@@ -24,7 +24,12 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Topic :: Internet',
     ],
-
+    entry_points = { 
+        'neutronclient.extension': [
+            'a10_scaling_group=a10_neutronclient.a10_scaling_group',
+            'a10_device_instance=a10_neutronclient.a10_device_instance'
+        ],
+    },
     include_package_data=True,
 
     install_requires = ['a10-neutron-lbaas>=1.5.0alpha']
