@@ -32,5 +32,5 @@ setup(
     },
     include_package_data=True,
 
-    install_requires = ['a10-neutron-lbaas>=1.5.0alpha']
+    install_requires = []
 )
