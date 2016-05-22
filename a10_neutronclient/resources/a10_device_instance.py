@@ -12,12 +12,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-EXTENSION = 'a10-appliance'
+EXTENSION = 'a10-device_instance'
 
 SERVICE = "A10_APPLIANCE"
 
-RESOURCES = 'a10_appliances'
-RESOURCE = 'a10_appliance'
+RESOURCES = 'a10_device_instances'
+RESOURCE = 'a10_device_instance'
 
 RESOURCE_ATTRIBUTE_MAP = {
     RESOURCES: {

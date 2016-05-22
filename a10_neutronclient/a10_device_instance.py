@@ -15,7 +15,7 @@
 from neutronclient.common import extension
 from neutronclient.neutron import v2_0 as neutronV20
 
-from a10_neutronclient.resources import a10_appliance
+from a10_neutronclient.resources import a10_device_instance
 
 _NEUTRON_OPTIONS = ['id', 'tenant_id']
 
@@ -26,7 +26,7 @@ def _arg_name(name):
 
 
 def _add_known_arguments(parser, required, where):
-    attributes = a10_appliance.RESOURCE_ATTRIBUTE_MAP[a10_appliance.RESOURCES]
+    attributes = a10_device_instance.RESOURCE_ATTRIBUTE_MAP[a10_device_instance.RESOURCES]
     for name in required:
         parser.add_argument(name)
     for name, attr in attributes.items():
@@ -36,37 +36,37 @@ def _add_known_arguments(parser, required, where):
 
 
 def _args2body(parsed_args):
-    attributes = a10_appliance.RESOURCE_ATTRIBUTE_MAP[a10_appliance.RESOURCES]
+    attributes = a10_device_instance.RESOURCE_ATTRIBUTE_MAP[a10_device_instance.RESOURCES]
     body = {}
     neutronV20.update_dict(parsed_args, body, [a for a in attributes if a != 'id'])
-    return {a10_appliance.RESOURCE: body}
+    return {a10_device_instance.RESOURCE: body}
 
 
-class a10_applianceExtension(extension.NeutronClientExtension):
+class a10_device_instanceExtension(extension.NeutronClientExtension):
     """Define required variables for resource operations."""
 
-    resource = a10_appliance.RESOURCE
-    resource_plural = a10_appliance.RESOURCES
+    resource = a10_device_instance.RESOURCE
+    resource_plural = a10_device_instance.RESOURCES
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
 
 
-class Lista10_appliance(extension.ClientExtensionList, a10_applianceExtension):
-    """List A10 appliances"""
+class Lista10_device_instance(extension.ClientExtensionList, a10_device_instanceExtension):
+    """List A10 device_instances"""
 
-    shell_command = 'a10-appliance-list'
+    shell_command = 'a10-device_instance-list'
 
     list_columns = ['id', 'name', 'host', 'api_version', 'description']
     pagination_support = True
     sorting_support = True
 
 
-class Createa10_appliance(extension.ClientExtensionCreate, a10_applianceExtension):
-    """Create A10 appliance"""
+class Createa10_device_instance(extension.ClientExtensionCreate, a10_device_instanceExtension):
+    """Create A10 device_instance"""
 
-    shell_command = 'a10-appliance-create'
+    shell_command = 'a10-device_instance-create'
 
     list_columns = ['id', 'name', 'host', 'api_version', 'description']
 
@@ -80,10 +80,10 @@ class Createa10_appliance(extension.ClientExtensionCreate, a10_applianceExtensio
         return _args2body(parsed_args)
 
 
-class Updatea10_appliance(extension.ClientExtensionUpdate, a10_applianceExtension):
-    """Update A10 appliance"""
+class Updatea10_device_instance(extension.ClientExtensionUpdate, a10_device_instanceExtension):
+    """Update A10 device_instance"""
 
-    shell_command = 'a10-appliance-update'
+    shell_command = 'a10-device_instance-update'
 
     list_columns = ['id', 'name', 'host', 'api_version', 'description']
 
@@ -97,13 +97,13 @@ class Updatea10_appliance(extension.ClientExtensionUpdate, a10_applianceExtensio
         return _args2body(parsed_args)
 
 
-class Deletea10_appliance(extension.ClientExtensionDelete, a10_applianceExtension):
-    """Delete A10 appliance"""
+class Deletea10_device_instance(extension.ClientExtensionDelete, a10_device_instanceExtension):
+    """Delete A10 device_instance"""
 
-    shell_command = 'a10-appliance-delete'
+    shell_command = 'a10-device_instance-delete'
 
 
-class Showa10_appliance(extension.ClientExtensionShow, a10_applianceExtension):
-    """Show A10 appliance"""
+class Showa10_device_instance(extension.ClientExtensionShow, a10_device_instanceExtension):
+    """Show A10 device_instance"""
 
-    shell_command = 'a10-appliance-show'
+    shell_command = 'a10-device_instance-show'
