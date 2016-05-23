@@ -2,3 +2,4 @@
 # so while we will list the ones used explicity here, we will not necessarily
 # specifiy versions
 # a10-neutronclient
+python-neutronclient

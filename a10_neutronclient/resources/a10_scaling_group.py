@@ -19,6 +19,13 @@ SCALING_ALARM = 'a10_scaling_alarm'
 SCALING_ACTIONS = 'a10_scaling_actions'
 SCALING_ACTION = 'a10_scaling_action'
 
+ALARM_UNITS = ['count', 'percentage', 'bytes']
+ALARM_AGGREGATIONS = ['avg', 'min', 'max', 'sum']
+ALARM_MEASUREMENTS = ['connections', 'memory', 'cpu', 'interface']
+ALARM_OPERATORS = ['>=', '>', '<=', '<']
+ALARM_PERIOD_UNITS = ['minute', 'hour', 'day']
+ACTIONS = ['scale-in', 'scale-out']
+
 RESOURCE_ATTRIBUTE_MAP = {
     SCALING_GROUPS: {
         'id': {
