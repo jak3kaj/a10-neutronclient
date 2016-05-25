@@ -1,0 +1,7 @@
+mock>=1.0.1,<1.1.0
+nose
+nose-exclude
+
+# TODO(dougwig) -- can we remove this?
+-e git+https://github.com/openstack/neutron#egg=neutron
+
