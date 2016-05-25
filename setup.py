@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "a10-neutronclient",
-    version = "0.1",
+    version = "0.1.0",
     packages = find_packages(),
 
     author = "A10 Networks",
@@ -12,7 +12,7 @@ setup(
     description = "A10 Networks Neutron Client Extensions",
     license = "Apache",
     keywords = "a10 adc slb load balancer openstack neutron lbaas cli",
-    url = "https://github.com/a10networks/a10-horizon",
+    url = "https://github.com/a10networks/a10-neutronclient",
 
     long_description = open('README.md').read(),
 
