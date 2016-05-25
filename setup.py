@@ -32,5 +32,5 @@ setup(
     },
     include_package_data=True,
 
-    install_requires = []
+    install_requires = ['python-neutronclient>=2.3.2']
 )
