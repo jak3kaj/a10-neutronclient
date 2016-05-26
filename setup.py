@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "a10-neutronclient",
-    version = "0.1.2",
+    version = "0.1.3",
     packages = find_packages(),
 
     author = "A10 Networks",
