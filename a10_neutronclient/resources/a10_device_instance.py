@@ -12,7 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-EXTENSION = 'a10_device_instance'
+EXTENSION = 'a10-device-instance'
 
 SERVICE = "A10_DEVICE_INSTANCE"
 
