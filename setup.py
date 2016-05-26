@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "a10-neutronclient",
-    version = "0.1.3",
+    version = "0.1.4",
     packages = find_packages(),
 
     author = "A10 Networks",
@@ -14,7 +14,7 @@ setup(
     keywords = "a10 adc slb load balancer openstack neutron lbaas cli",
     url = "https://github.com/a10networks/a10-neutronclient",
 
-    long_description = open('README.md').read(),
+    long_description = 'A10 neutron client extensions'
 
     classifiers = [
         'License :: OSI Approved :: Apache Software License',
