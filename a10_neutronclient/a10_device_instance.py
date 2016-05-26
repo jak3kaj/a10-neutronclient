@@ -12,98 +12,31 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutronclient.common import extension
-from neutronclient.neutron import v2_0 as neutronV20
-
+from a10_neutronclient import client_extension
 from a10_neutronclient.resources import a10_device_instance
 
-_NEUTRON_OPTIONS = ['id', 'tenant_id']
 
-
-def _arg_name(name):
-    """--shish-kabob it"""
-    return '--%s' % name.replace('_', '-')
-
-
-def _add_known_arguments(parser, required, where):
-    attributes = a10_device_instance.RESOURCE_ATTRIBUTE_MAP[a10_device_instance.RESOURCES]
-    for name in required:
-        parser.add_argument(name)
-    for name, attr in attributes.items():
-        if name in required or name in _NEUTRON_OPTIONS or not where(attr):
-            continue
-        parser.add_argument(_arg_name(name), dest=name)
-
-
-def _args2body(parsed_args):
-    attributes = a10_device_instance.RESOURCE_ATTRIBUTE_MAP[a10_device_instance.RESOURCES]
-    body = {}
-    neutronV20.update_dict(parsed_args, body, [a for a in attributes if a != 'id'])
-    return {a10_device_instance.RESOURCE: body}
-
-
-class a10_device_instanceExtension(extension.NeutronClientExtension):
-    """Define required variables for resource operations."""
+class DeviceInstanceExtension(client_extension.ClientExtension):
 
     resource = a10_device_instance.RESOURCE
     resource_plural = a10_device_instance.RESOURCES
+
+    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
 
 
-class Lista10_device_instance(extension.ClientExtensionList, a10_device_instanceExtension):
-    """List A10 device_instances"""
+class DeviceInstanceList(client_extension.List, DeviceInstanceExtension):
+    """List current A10 vThunder instances"""
 
-    shell_command = 'a10-device_instance-list'
+    shell_command = 'a10-device-instance-list'
 
-    list_columns = ['id', 'name', 'host', 'api_version', 'description']
-    pagination_support = True
-    sorting_support = True
+    list_columns = ['id', 'name', 'host', 'api_version', 'nova_instance_id', 'description']
 
 
-class Createa10_device_instance(extension.ClientExtensionCreate, a10_device_instanceExtension):
-    """Create A10 device_instance"""
+class DeviceInstanceShow(client_extension.Show, DeviceInstanceExtension):
+    """Show A10 vThunder instance"""
 
-    shell_command = 'a10-device_instance-create'
-
-    list_columns = ['id', 'name', 'host', 'api_version', 'description']
-
-    def add_known_arguments(self, parser):
-        _add_known_arguments(
-            parser,
-            ['host', 'api_version', 'username', 'password'],
-            lambda attr: attr.get('allow_post'))
-
-    def args2body(self, parsed_args):
-        return _args2body(parsed_args)
-
-
-class Updatea10_device_instance(extension.ClientExtensionUpdate, a10_device_instanceExtension):
-    """Update A10 device_instance"""
-
-    shell_command = 'a10-device_instance-update'
-
-    list_columns = ['id', 'name', 'host', 'api_version', 'description']
-
-    def add_known_arguments(self, parser):
-        _add_known_arguments(
-            parser,
-            [],
-            lambda attr: attr.get('allow_put'))
-
-    def args2body(self, parsed_args):
-        return _args2body(parsed_args)
-
-
-class Deletea10_device_instance(extension.ClientExtensionDelete, a10_device_instanceExtension):
-    """Delete A10 device_instance"""
-
-    shell_command = 'a10-device_instance-delete'
-
-
-class Showa10_device_instance(extension.ClientExtensionShow, a10_device_instanceExtension):
-    """Show A10 device_instance"""
-
-    shell_command = 'a10-device_instance-show'
+    shell_command = 'a10-device-instance-show'
