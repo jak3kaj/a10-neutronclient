@@ -14,7 +14,7 @@ setup(
     keywords = "a10 adc slb load balancer openstack neutron lbaas cli",
     url = "https://github.com/a10networks/a10-neutronclient",
 
-    long_description = 'A10 neutron client extensions'
+    long_description = 'A10 neutron client extensions',
 
     classifiers = [
         'License :: OSI Approved :: Apache Software License',
