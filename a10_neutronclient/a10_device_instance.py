@@ -12,8 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from a10_openstack_lib.resources import a10_device_instance
+
 from a10_neutronclient import client_extension
-from a10_neutronclient.resources import a10_device_instance
 
 
 class DeviceInstanceExtension(client_extension.ClientExtension):
