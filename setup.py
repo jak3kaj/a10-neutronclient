@@ -32,5 +32,5 @@ setup(
     },
     include_package_data=True,
 
-    install_requires = ['python-neutronclient>=2.3.2']
+    install_requires = ['python-neutronclient>=2.3.2', 'a10-openstack-lib>=0.1.0']
 )

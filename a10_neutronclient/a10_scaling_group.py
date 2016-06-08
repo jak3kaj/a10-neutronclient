@@ -2,10 +2,10 @@
 
 import operator
 
+from a10_openstack_lib.resources import a10_scaling_group
 from neutronclient.common import utils
 
 from a10_neutronclient import client_extension
-from a10_neutronclient.resources import a10_scaling_group
 
 
 class ScalingGroupExtension(client_extension.ClientExtension):
