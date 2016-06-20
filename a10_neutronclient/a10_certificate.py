@@ -90,7 +90,7 @@ class CertificateBindingList(client_extension.List, CertificateBindingExtension)
 
     shell_command = 'a10-certificatebinding-list'
 
-    list_columns = ['certificate_id', 'listener_id']
+    list_columns = ['id', 'certificate_id', 'listener_id']
 
 
 class CertificateBindingCreate(client_extension.Create, CertificateBindingExtension):
