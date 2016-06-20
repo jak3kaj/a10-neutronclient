@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "a10-neutronclient",
-    version = "0.1.5a",
+    version = "0.1.6a",
     packages = find_packages(),
 
     author = "A10 Networks",
@@ -27,7 +27,8 @@ setup(
     entry_points = { 
         'neutronclient.extension': [
             'a10_scaling_group=a10_neutronclient.a10_scaling_group',
-            'a10_device_instance=a10_neutronclient.a10_device_instance'
+            'a10_device_instance=a10_neutronclient.a10_device_instance',
+            'a10_certificate=a10_neutronclient.a10_certificate'
         ],
     },
     include_package_data=True,

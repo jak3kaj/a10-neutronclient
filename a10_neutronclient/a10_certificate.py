@@ -10,10 +10,10 @@ from a10_neutronclient import client_extension
 
 class CertificateExtension(client_extension.ClientExtension):
 
-    resource = a10_certificates.CERTIFICATE
-    resource_plural = a10_certificates.CERTIFICATES
+    resource = a10_certificate.CERTIFICATE
+    resource_plural = a10_certificate.CERTIFICATES
 
-    resource_attribute_map = a10_certificates.RESOURCE_ATTRIBUTE_MAP
+    resource_attribute_map = a10_certificate.RESOURCE_ATTRIBUTE_MAP
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
@@ -39,16 +39,24 @@ class CertificateCreate(client_extension.Create, CertificateExtension):
         self._add_known_arguments(parser, ['name'])
 
 
-class CertificateDelete(client_extension.Delete, ScalingGroupExtension):
+class CertificateDelete(client_extension.Delete, CertificateExtension):
     """Delete A10 SSL Certificate"""
 
     shell_command = 'a10-certificate-delete'
 
 
-class CertificateShow(client_extension.Show, ScalingGroupExtension):
+class CertificateShow(client_extension.Show, CertificateExtension):
     """Show A10 SSL Certificate"""
 
     shell_command = 'a10-certificate-show'
+
+
+class CertificateUpdate(client_extension.Update, CertificateExtension):
+    """Update A10 scaling group"""
+
+    shell_command = 'a10-certificate-update'
+
+    list_columns = ['id', 'name', 'cert_data', 'intermediate_data', 'key_data']
 
 
 class CertificateBindingExtension(client_extension.ClientExtension):
@@ -58,7 +66,7 @@ class CertificateBindingExtension(client_extension.ClientExtension):
 
     resource_attribute_map = a10_certificate.RESOURCE_ATTRIBUTE_MAP
 
-    object_path = '%s' % resource_plural
+    object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
 
