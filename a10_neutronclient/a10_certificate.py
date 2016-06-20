@@ -36,6 +36,20 @@ class CertificateCreate(client_extension.Create, CertificateExtension):
     list_columns = ['id', 'name', 'description', 'cert_data', 'key_data', 'intermediate_data', 'password']
 
     def add_known_arguments(self, parser):
+        parser.add_argument(
+            '--cert-file',
+            action=client_extension.ReadFileAction,
+            dest='cert_data')
+
+        parser.add_argument(
+            '--key-file',
+            action=client_extension.ReadFileAction,
+            dest='key_data')
+
+        parser.add_argument(
+            '--intermediate-file',
+            action=client_extension.ReadFileAction,
+            dest='intermediate_data')
         self._add_known_arguments(parser, ['name'])
 
 

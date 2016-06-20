@@ -13,6 +13,8 @@
 #    under the License.
 
 
+import argparse
+
 from neutronclient.common import extension
 from neutronclient.neutron import v2_0 as neutronV20
 
@@ -124,3 +126,10 @@ class Delete(extension.ClientExtensionDelete):
 
 class Show(extension.ClientExtensionShow):
     pass
+
+
+class ReadFileAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        with open(values, 'r') as file:
+            data = file.read()
+            setattr(namespace, self.dest, data)
