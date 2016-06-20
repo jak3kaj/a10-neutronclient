@@ -25,7 +25,7 @@ class CertificateList(client_extension.List, CertificateExtension):
 
     shell_command = 'a10-certificate-list'
 
-    list_columns = ['id', 'name', 'description', 'cert_data', 'key_data', 'intermediate_data', 'password']
+    list_columns = ['id', 'name', 'description']
 
 
 class CertificateCreate(client_extension.Create, CertificateExtension):
