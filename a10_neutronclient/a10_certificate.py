@@ -1,9 +1,6 @@
 # Copyright (C) 2016 A10 Networks Inc. All rights reserved.
 
-import operator
-
 from a10_openstack_lib.resources import a10_certificate
-from neutronclient.common import utils
 
 from a10_neutronclient import client_extension
 
@@ -33,7 +30,7 @@ class CertificateCreate(client_extension.Create, CertificateExtension):
 
     shell_command = 'a10-certificate-create'
 
-    list_columns = ['id', 'name', 'description', 'cert_data', 'key_data', 'intermediate_data', 'password']
+    list_columns = ['id', 'name', 'description', 'cert_data', 'intermediate_data']
 
     def add_known_arguments(self, parser):
         parser.add_argument(
@@ -70,7 +67,7 @@ class CertificateUpdate(client_extension.Update, CertificateExtension):
 
     shell_command = 'a10-certificate-update'
 
-    list_columns = ['id', 'name', 'cert_data', 'intermediate_data', 'key_data']
+    list_columns = ['id', 'name', 'description', 'cert_data', 'intermediate_data']
 
 
 class CertificateBindingExtension(client_extension.ClientExtension):
@@ -97,7 +94,7 @@ class CertificateBindingCreate(client_extension.Create, CertificateBindingExtens
     """Create A10 scaling group worker"""
 
     shell_command = 'a10-certificatebinding-create'
-    list_columns = ['certificate_id', 'listener_id']
+    list_columns = ['id', 'certificate_id', 'listener_id']
 
     def add_known_arguments(self, parser):
         self._add_known_arguments(parser, ['certificate_id', 'listener_id'])
@@ -113,5 +110,3 @@ class CertificateBindingShow(client_extension.Show, CertificateBindingExtension)
     """Show A10 scaling group worker"""
 
     shell_command = 'a10-certificatebinding-show'
-
-
