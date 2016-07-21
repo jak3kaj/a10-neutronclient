@@ -52,7 +52,7 @@ class DeviceInstanceCreate(client_extension.Create, DeviceInstanceExtension):
         self._add_known_arguments(parser, ['name'])
 
 
-class DeviceInstanceDelete(client_extension.Delete, ScalingGroupExtension):
+class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
     """Delete A10 vThunder Instance"""
 
     shell_command = 'a10-device-instance-delete'
