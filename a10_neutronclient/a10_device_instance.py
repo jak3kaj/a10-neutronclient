@@ -41,3 +41,18 @@ class DeviceInstanceShow(client_extension.Show, DeviceInstanceExtension):
     """Show A10 vThunder instance"""
 
     shell_command = 'a10-device-instance-show'
+
+
+class DeviceInstanceCreate(client_extension.Create, DeviceInstanceExtension):
+
+    shell_command = 'a10-device-instance-create'
+    list_columns = ['name', 'host', 'nova_instance_id']
+
+    def add_known_arguments(self, parser):
+        self._add_known_arguments(parser, ['name'])
+
+
+class DeviceInstanceDelete(client_extension.Delete, ScalingGroupExtension):
+    """Delete A10 vThunder Instance"""
+
+    shell_command = 'a10-device-instance-delete'
