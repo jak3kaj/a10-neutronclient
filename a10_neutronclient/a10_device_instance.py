@@ -13,6 +13,7 @@
 #    under the License.
 
 from a10_openstack_lib.resources import a10_device_instance
+from neutronclient.common import utils
 
 from a10_neutronclient import client_extension
 
@@ -27,6 +28,13 @@ class DeviceInstanceExtension(client_extension.ClientExtension):
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
+
+    def add_networks_argument(self, parser):
+        parser.add_argument(
+            '--networks',
+            nargs='+',
+            action='append',
+            dest='networks')
 
 
 class DeviceInstanceList(client_extension.List, DeviceInstanceExtension):
@@ -49,7 +57,7 @@ class DeviceInstanceCreate(client_extension.Create, DeviceInstanceExtension):
     list_columns = ['name', 'host', 'nova_instance_id']
 
     def add_known_arguments(self, parser):
-        self._add_known_arguments(parser, ['name'])
+        self.add_networks_argument(parser)
 
 
 class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
