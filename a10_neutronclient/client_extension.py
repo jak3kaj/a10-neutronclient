@@ -11,10 +11,10 @@ JUST_NONE = object()
 class ClientExtension(extension.NeutronClientExtension):
 
     def _arg_name(self, name, types, prefix="--"):
-        if 'a10_type:nullable' in types:
-            return self._arg_name(name, types['a10_type:nullable'], prefix)
+        if 'type:a10_nullable' in types:
+            return self._arg_name(name, types['type:a10_nullable'], prefix)
 
-        if 'a10_type:reference' in types:
+        if 'type:a10_reference' in types:
             if name.endswith('_id'):
                 name = name[:-3]
 
@@ -31,7 +31,7 @@ class ClientExtension(extension.NeutronClientExtension):
             types = attr.get('validate', {})
             parser.add_argument(self._arg_name(name, types), dest=name)
 
-            if 'a10_type:nullable' in types:
+            if 'type:a10_nullable' in types:
                 parser.add_argument(
                     self._arg_name(name, types, '--no-'),
                     action='store_const',
@@ -45,11 +45,11 @@ class ClientExtension(extension.NeutronClientExtension):
         if value == JUST_NONE:
             return None
 
-        if 'a10_type:nullable' in types:
-            return self._transform_arg(value, types['a10_type:nullable'])
+        if 'type:a10_nullable' in types:
+            return self._transform_arg(value, types['type:a10_nullable'])
 
-        if 'a10_type:reference' in types:
-            reference_to = types['a10_type:reference']
+        if 'type:a10_reference' in types:
+            reference_to = types['type:a10_reference']
             return self.get_resource_id(reference_to, value)
 
         return value
