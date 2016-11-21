@@ -63,3 +63,10 @@ class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
     """Delete A10 vThunder Instance"""
 
     shell_command = 'a10-device-instance-delete'
+
+
+class DeviceInstanceUpdate(client_extension.Update, DeviceInstanceExtension):
+    """Update A10 vThunder Instance"""
+
+    shell_command = "a10-device-instance-update"
+    list_columns = ["name", "host", "nova_instance_id", "api_version"]
