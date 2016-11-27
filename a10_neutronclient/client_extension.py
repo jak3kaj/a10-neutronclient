@@ -1,4 +1,17 @@
 # Copyright (C) 2016 A10 Networks Inc. All rights reserved.
+#
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+
 
 from neutronclient.common import extension
 from neutronclient.neutron import v2_0 as neutronV20
@@ -11,10 +24,10 @@ JUST_NONE = object()
 class ClientExtension(extension.NeutronClientExtension):
 
     def _arg_name(self, name, types, prefix="--"):
-        if 'a10_type:nullable' in types:
-            return self._arg_name(name, types['a10_type:nullable'], prefix)
+        if 'type:a10_nullable' in types:
+            return self._arg_name(name, types['type:a10_nullable'], prefix)
 
-        if 'a10_type:reference' in types:
+        if 'type:a10_reference' in types:
             if name.endswith('_id'):
                 name = name[:-3]
 
@@ -31,7 +44,7 @@ class ClientExtension(extension.NeutronClientExtension):
             types = attr.get('validate', {})
             parser.add_argument(self._arg_name(name, types), dest=name)
 
-            if 'a10_type:nullable' in types:
+            if 'type:a10_nullable' in types:
                 parser.add_argument(
                     self._arg_name(name, types, '--no-'),
                     action='store_const',
@@ -45,11 +58,11 @@ class ClientExtension(extension.NeutronClientExtension):
         if value == JUST_NONE:
             return None
 
-        if 'a10_type:nullable' in types:
-            return self._transform_arg(value, types['a10_type:nullable'])
+        if 'type:a10_nullable' in types:
+            return self._transform_arg(value, types['type:a10_nullable'])
 
-        if 'a10_type:reference' in types:
-            reference_to = types['a10_type:reference']
+        if 'type:a10_reference' in types:
+            reference_to = types['type:a10_reference']
             return self.get_resource_id(reference_to, value)
 
         return value
