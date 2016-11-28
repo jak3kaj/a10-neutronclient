@@ -79,7 +79,7 @@ class CertificateUpdate(client_extension.Update, CertificateExtension):
 
     shell_command = 'a10-certificate-update'
 
-    list_columns = ['id', 'name', 'description', 'cert_data', 'intermediate_data']
+    list_columns = ['id', 'name']
 
 
 class CertificateBindingExtension(client_extension.ClientExtension):
