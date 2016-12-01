@@ -42,7 +42,7 @@ class CertificateCreate(client_extension.Create, CertificateExtension):
 
     shell_command = 'a10-certificate-create'
 
-    list_columns = ['id', 'name', 'description', 'cert_data', 'intermediate_data']
+    list_columns = ['id', 'name', 'description']
 
     def add_known_arguments(self, parser):
         parser.add_argument(
