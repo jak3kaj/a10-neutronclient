@@ -38,7 +38,7 @@ class CertificateList(client_extension.List, CertificateExtension):
 
 
 class CertificateCreate(client_extension.Create, CertificateExtension):
-    """Create A10 scaling group"""
+    """Create A10 SSL Certificate"""
 
     shell_command = 'a10-certificate-create'
 
@@ -103,7 +103,7 @@ class CertificateBindingList(client_extension.List, CertificateBindingExtension)
 
 
 class CertificateBindingCreate(client_extension.Create, CertificateBindingExtension):
-    """Create A10 scaling group worker"""
+    """Create A10 SSL Certificate <-> Listener Binding"""
 
     shell_command = 'a10-certificatebinding-create'
     list_columns = ['id', 'certificate_id', 'listener_id']
@@ -113,12 +113,12 @@ class CertificateBindingCreate(client_extension.Create, CertificateBindingExtens
 
 
 class CertificateBindingDelete(client_extension.Delete, CertificateBindingExtension):
-    """Delete A10 scaling group worker"""
+    """Delete A10 SSL Certificate <-> Listener Binding"""
 
     shell_command = 'a10-certificatebinding-delete'
 
 
 class CertificateBindingShow(client_extension.Show, CertificateBindingExtension):
-    """Show A10 scaling group worker"""
+    """Show A10 SSL Certificate <-> Listener Binding Details"""
 
     shell_command = 'a10-certificatebinding-show'
