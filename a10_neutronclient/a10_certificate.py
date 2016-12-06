@@ -75,7 +75,7 @@ class CertificateShow(client_extension.Show, CertificateExtension):
 
 
 class CertificateUpdate(client_extension.Update, CertificateExtension):
-    """Update A10 scaling group"""
+    """Update A10 SSL Certificate"""
 
     shell_command = 'a10-certificate-update'
 
