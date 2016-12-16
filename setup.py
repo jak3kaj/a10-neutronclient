@@ -24,10 +24,11 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Topic :: Internet',
     ],
-    entry_points = { 
+    entry_points = {
         'neutronclient.extension': [
             'a10_scaling_group=a10_neutronclient.a10_scaling_group',
-            'a10_device_instance=a10_neutronclient.a10_device_instance'
+            'a10_device_instance=a10_neutronclient.a10_device_instance',
+            'a10_certificate=a10_neutronclient.a10_certificate'
         ],
     },
     include_package_data=True,
