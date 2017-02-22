@@ -29,12 +29,36 @@ class ClientExtension(extension.NeutronClientExtension):
         if 'type:a10_nullable' in types:
             return self._arg_name(name, types['type:a10_nullable'], prefix)
 
+        if 'type:a10_list' in types:
+            return self._arg_name(name, types['type:a10_list'], prefix)
+
         if 'type:a10_reference' in types:
             if name.endswith('_id'):
                 name = name[:-3]
 
         """--shish-kabob it"""
         return prefix + name.replace('_', '-')
+
+    def _add_known_argument(self, parser, name, types):
+        if 'type:a10_nullable' in types:
+            parser.add_argument(
+                self._arg_name(name, types, '--no-'),
+                action='store_const',
+                const=JUST_NONE,
+                dest=name)
+
+            self._add_known_argument(parser, name, types['type:a10_nullable'])
+            return
+
+        if 'type:a10_list' in types:
+            parser.add_argument(
+                self._arg_name(name, types['type:a10_list']),
+                nargs='+',
+                action='append',
+                dest=name)
+            return
+
+        parser.add_argument(self._arg_name(name, types), dest=name)
 
     def _add_known_arguments(self, parser, required, ignore=[], where=lambda x: True):
         attributes = self.resource_attribute_map[self.resource_plural]
@@ -44,14 +68,8 @@ class ClientExtension(extension.NeutronClientExtension):
             if name in required or name in _NEUTRON_OPTIONS or name in ignore or not where(attr):
                 continue
             types = attr.get('validate', {})
-            parser.add_argument(self._arg_name(name, types), dest=name)
 
-            if 'type:a10_nullable' in types:
-                parser.add_argument(
-                    self._arg_name(name, types, '--no-'),
-                    action='store_const',
-                    const=JUST_NONE,
-                    dest=name)
+            self._add_known_argument(parser, name, types)
 
     def alter_body(self, parsed_args, body):
         return body
@@ -62,6 +80,10 @@ class ClientExtension(extension.NeutronClientExtension):
 
         if 'type:a10_nullable' in types:
             return self._transform_arg(value, types['type:a10_nullable'])
+
+        if 'type:a10_list' in types:
+            return [self._transform_arg(x, types['type:a10_list'])
+                    for x in value]
 
         if 'type:a10_reference' in types:
             reference_to = types['type:a10_reference']
