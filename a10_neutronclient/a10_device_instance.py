@@ -28,13 +28,6 @@ class DeviceInstanceExtension(client_extension.ClientExtension):
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
 
-    def add_networks_argument(self, parser):
-        parser.add_argument(
-            '--networks',
-            nargs='+',
-            action='append',
-            dest='networks')
-
 
 class DeviceInstanceList(client_extension.List, DeviceInstanceExtension):
     """List current A10 vThunder instances"""
@@ -54,9 +47,6 @@ class DeviceInstanceCreate(client_extension.Create, DeviceInstanceExtension):
 
     shell_command = 'a10-device-instance-create'
     list_columns = ['name', 'host', 'nova_instance_id']
-
-    def add_known_arguments(self, parser):
-        self.add_networks_argument(parser)
 
 
 class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
