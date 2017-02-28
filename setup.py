@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "a10-neutronclient",
-    version = "0.1.5a",
+    version = "0.2.0",
     packages = find_packages(),
 
     author = "A10 Networks",
@@ -33,5 +33,5 @@ setup(
     },
     include_package_data=True,
 
-    install_requires = ['python-neutronclient>=2.3.2', 'a10-openstack-lib>=0.1.0']
+    install_requires = ['python-neutronclient>=2.3.2', 'a10-openstack-lib>=0.2.0']
 )
