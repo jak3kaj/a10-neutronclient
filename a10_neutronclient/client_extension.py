@@ -53,7 +53,7 @@ class ClientExtension(extension.NeutronClientExtension):
         if 'type:a10_list' in types:
             parser.add_argument(
                 self._arg_name(name, types['type:a10_list']),
-                nargs='+',
+                nargs='*',
                 action='append',
                 dest=name)
             return
@@ -82,8 +82,11 @@ class ClientExtension(extension.NeutronClientExtension):
             return self._transform_arg(value, types['type:a10_nullable'])
 
         if 'type:a10_list' in types:
+            # argparse makes lists of lists
+            # one sublist per instance of the argument
             return [self._transform_arg(x, types['type:a10_list'])
-                    for x in value]
+                    for sublist in value
+                    for x in sublist]
 
         if 'type:a10_reference' in types:
             reference_to = types['type:a10_reference']
