@@ -27,7 +27,7 @@ setup(
     entry_points = {
         'neutronclient.extension': [
             'a10_scaling_group=a10_neutronclient.a10_scaling_group',
-            'a10_device_instance=a10_neutronclient.a10_device_instance',
+            'a10_device=a10_neutronclient.a10_device',
             'a10_certificate=a10_neutronclient.a10_certificate'
         ],
     },
