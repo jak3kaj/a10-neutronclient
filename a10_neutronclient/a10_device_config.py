@@ -35,14 +35,14 @@ class A10DeviceConfigShow(client_extension.Show, A10DeviceConfigExtension):
 
 class A10DeviceConfigCreate(client_extension.Create, DeviceInstanceExtension):
 
-    shell_command = 'a10-device-config-create'
-    list_columns = ['name', 'host', 'conn-limit', 'username', 'password', 'port', 'api_version']
+    shell_command = 'a10-device-config-key-create'
+    list_columns = ['name', 'description']
 
 
 class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
     """Delete A10 vThunder Instance"""
 
-    shell_command = 'a10-device-config-delete'
+    shell_command = 'a10-device-config-key-delete'
 
 
 class DeviceInstanceUpdate(client_extension.Update, DeviceInstanceExtension):
