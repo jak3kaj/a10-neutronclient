@@ -17,7 +17,7 @@ from a10_openstack_lib.resources import a10_config
 from a10_neutronclient import client_extension
 
 
-class A10DeviceConfigExtension(client_extension.ClientExtension):
+class DeviceConfigExtension(client_extension.ClientExtension):
     resource = a10_device_config.RESOURCE
     resource_plural = a10_device_config.RESOURCES
 
@@ -39,14 +39,16 @@ class A10DeviceConfigCreate(client_extension.Create, DeviceInstanceExtension):
     list_columns = ['name', 'description']
 
 
-class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
+class DeviceConfigDelete(client_extension.Delete, DeviceInstanceExtension):
     """Delete A10 vThunder Instance"""
 
     shell_command = 'a10-device-config-key-delete'
 
 
-class DeviceInstanceUpdate(client_extension.Update, DeviceInstanceExtension):
+class DeviceConfigUpdate(client_extension.Update, DeviceInstanceExtension):
     """Update A10 vThunder Instance"""
 
-    shell_command = "a10-device-config-update"
-    list_columns = ['host', 'api_version', 'conn-limit', 'username', 'password', 'api_version']
+    shell_command = "a10-device-config-key-update"
+    list_columns = ['name', 'description']
+
+
