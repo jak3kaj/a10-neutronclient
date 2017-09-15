@@ -19,8 +19,8 @@ from a10_neutronclient import client_extension
 
 class DeviceInstanceExtension(client_extension.ClientExtension):
 
-    resource = a10_device_instance.RESOURCE
-    resource_plural = a10_device_instance.RESOURCES
+    resource = a10_device_instance.DEVICE
+    resource_plural = a10_device_instance.DEVICES
 
     resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
 
@@ -60,3 +60,91 @@ class DeviceInstanceUpdate(client_extension.Update, DeviceInstanceExtension):
 
     shell_command = "a10-device-instance-update"
     list_columns = ["name", "host", "nova_instance_id", "api_version"]
+
+
+class A10DeviceKeyExtension(client_extension.ClientExtension):
+
+    resource = a10_device_instance.DEVICE_KEY
+    resource_plural = a10_device_instance.DEVICE_KEYS
+
+    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
+
+    object_path = '/%s' % resource_plural
+    resource_path = '/%s/%%s' % resource_plural
+    versions = ['2.0']
+
+class A10DeviceKeyList(client_extension.List, A10DeviceKeyExtension):
+    """List current A10 vThunder instances"""
+
+    shell_command = 'a10-device-key-list'
+
+    list_columns = ['id', 'name', 'description']
+
+
+class A10DeviceKeyShow(client_extension.Show, A10DeviceKeyExtension):
+    """Show A10 vThunder instance"""
+
+    shell_command = 'a10-device-key-show'
+
+
+class A10DeviceKeyCreate(client_extension.Create, A10DeviceKeyExtension):
+
+    shell_command = 'a10-device-key-create'
+    list_columns = ['name', 'description']
+
+
+class A10DeviceKeyDelete(client_extension.Delete, A10DeviceKeyExtension):
+    """Delete A10 vThunder Instance"""
+
+    shell_command = 'a10-device-key-delete'
+
+
+class A10DeviceKeyUpdate(client_extension.Update, A10DeviceKeyExtension):
+    """Update A10 vThunder Instance"""
+
+    shell_command = 'a10-device-key-update'
+    list_columns = ['name', 'description']
+
+
+class A10DeviceValueExtension(client_extension.ClientExtension):
+
+    resource = a10_device_instance.DEVICE_VALUE
+    resource_plural = a10_device_instance.DEVICE_VALUE
+
+    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
+
+    object_path = '/%s' % resource_plural
+    resource_path = '/%s/%%s' % resource_plural
+    versions = ['2.0']
+
+class A10DeviceValueList(client_extension.List, A10DeviceValueExtension):
+    """List current A10 vThunder instances"""
+
+    shell_command = 'a10-device-value-list'
+
+    list_columns = ['id', 'key_id', 'device_id', 'name', 'description']
+
+
+class A10DeviceValueShow(client_extension.Show, A10DeviceKeyExtension):
+    """Show A10 vThunder instance"""
+
+    shell_command = 'a10-device-key-show'
+
+
+class A10DeviceVlaueCreate(client_extension.Create, A10DeviceKeyExtension):
+
+    shell_command = 'a10-device-key-create'
+    list_columns = ['name', 'description']
+
+
+class A10DeviceKeyDelete(client_extension.Delete, A10DeviceKeyExtension):
+    """Delete A10 vThunder Instance"""
+
+    shell_command = 'a10-device-key-delete'
+
+
+class A10DeviceKeyUpdate(client_extension.Update, A10DeviceKeyExtension):
+    """Update A10 vThunder Instance"""
+
+    shell_command = 'a10-device-key-update'
+    list_columns = ['name', 'description']
