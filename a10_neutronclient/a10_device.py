@@ -12,54 +12,97 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from a10_openstack_lib.resources import a10_device_instance
+from a10_openstack_lib.resources import a10_device
 
 from a10_neutronclient import client_extension
 
 
-class DeviceInstanceExtension(client_extension.ClientExtension):
+class VThunderExtension(client_extension.ClientExtension):
 
-    resource = a10_device_instance.DEVICE
-    resource_plural = a10_device_instance.DEVICES
+    resource = a10_device.VTHUNDER
+    resource_plural = a10_device.VTHUNDERS
 
-    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
+    resource_attribute_map = a10_device.RESOURCE_ATTRIBUTE_MAP
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
 
 
-class DeviceInstanceList(client_extension.List, DeviceInstanceExtension):
+class VThunderList(client_extension.List, VThunderExtension):
     """List current A10 vThunder instances"""
 
-    shell_command = 'a10-device-instance-list'
-
+    shell_command = 'a10-vthunder-list'
     list_columns = ['id', 'name', 'host', 'api_version', 'nova_instance_id', 'description']
 
 
-class DeviceInstanceShow(client_extension.Show, DeviceInstanceExtension):
+class VThunderShow(client_extension.Show, VThunderExtension):
     """Show A10 vThunder instance"""
 
-    shell_command = 'a10-device-instance-show'
+    shell_command = 'a10-vthunder-show'
 
 
-class DeviceInstanceCreate(client_extension.Create, DeviceInstanceExtension):
+class VThunderCreate(client_extension.Create, VThunderExtension):
 
-    shell_command = 'a10-device-instance-create'
+    shell_command = 'a10-vthunder-create'
     list_columns = ['name', 'host', 'nova_instance_id']
 
 
-class DeviceInstanceDelete(client_extension.Delete, DeviceInstanceExtension):
+class VThunderDelete(client_extension.Delete, VThunderExtension):
     """Delete A10 vThunder Instance"""
 
-    shell_command = 'a10-device-instance-delete'
+    shell_command = 'a10-vthunder-delete'
 
 
-class DeviceInstanceUpdate(client_extension.Update, DeviceInstanceExtension):
+class VThunderUpdate(client_extension.Update, VThunderExtension):
     """Update A10 vThunder Instance"""
 
-    shell_command = "a10-device-instance-update"
+    shell_command = "a10-vthunder-update"
     list_columns = ["name", "host", "nova_instance_id", "api_version"]
+
+
+class DeviceExtension(client_extension.ClientExtension):
+
+    resource = a10_device.DEVICE
+    resource_plural = a10_device.DEVICES
+
+    resource_attribute_map = a10_device.RESOURCE_ATTRIBUTE_MAP
+
+    object_path = '/%s' % resource_plural
+    resource_path = '/%s/%%s' % resource_plural
+    versions = ['2.0']
+
+
+class DeviceList(client_extension.List, DeviceExtension):
+    """List current A10 vThunder instances"""
+
+    shell_command = 'a10-device-list'
+    list_columns = ['id', 'name', 'host', 'api_version', 'description']
+
+
+class DeviceShow(client_extension.Show, DeviceExtension):
+    """Show A10 vThunder instance"""
+
+    shell_command = 'a10-device-show'
+
+
+class DeviceCreate(client_extension.Create, DeviceExtension):
+
+    shell_command = 'a10-device-create'
+    list_columns = ['name', 'host']
+
+
+class DeviceDelete(client_extension.Delete, DeviceExtension):
+    """Delete A10 vThunder Instance"""
+
+    shell_command = 'a10-device-delete'
+
+
+class DeviceUpdate(client_extension.Update, DeviceExtension):
+    """Update A10 vThunder Instance"""
+
+    shell_command = "a10-device-update"
+    list_columns = ["name", "host", "api_version"]
 
 
 class A10DeviceKeyExtension(client_extension.ClientExtension):
