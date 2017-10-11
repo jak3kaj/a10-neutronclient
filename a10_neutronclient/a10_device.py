@@ -43,6 +43,7 @@ class VThunderShow(client_extension.Show, VThunderExtension):
 
 
 class VThunderCreate(client_extension.Create, VThunderExtension):
+    """Create A10 vThunder Instance"""
 
     shell_command = 'a10-vthunder-create'
     list_columns = ['name', 'host', 'nova_instance_id']
@@ -107,10 +108,10 @@ class DeviceUpdate(client_extension.Update, DeviceExtension):
 
 class A10DeviceKeyExtension(client_extension.ClientExtension):
 
-    resource = a10_device_instance.DEVICE_KEY
-    resource_plural = a10_device_instance.DEVICE_KEYS
+    resource = a10_device.DEVICE_KEY
+    resource_plural = a10_device.DEVICE_KEYS
 
-    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
+    resource_attribute_map = a10_device.RESOURCE_ATTRIBUTE_MAP
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
@@ -150,10 +151,10 @@ class A10DeviceKeyUpdate(client_extension.Update, A10DeviceKeyExtension):
 
 class A10DeviceValueExtension(client_extension.ClientExtension):
 
-    resource = a10_device_instance.DEVICE_VALUE
-    resource_plural = a10_device_instance.DEVICE_VALUE
+    resource = a10_device.DEVICE_VALUE
+    resource_plural = a10_device.DEVICE_VALUE
 
-    resource_attribute_map = a10_device_instance.RESOURCE_ATTRIBUTE_MAP
+    resource_attribute_map = a10_device.RESOURCE_ATTRIBUTE_MAP
 
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
