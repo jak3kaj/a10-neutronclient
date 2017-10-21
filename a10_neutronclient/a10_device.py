@@ -165,7 +165,7 @@ class A10DeviceValueList(client_extension.List, A10DeviceValueExtension):
 
     shell_command = 'a10-device-value-list'
 
-    list_columns = ['id', 'key_id', 'device_id', 'name', 'description']
+    list_columns = ['id', 'key_id', 'device_id', 'value', 'description']
 
 
 class A10DeviceValueShow(client_extension.Show, A10DeviceValueExtension):
@@ -177,7 +177,7 @@ class A10DeviceValueShow(client_extension.Show, A10DeviceValueExtension):
 class A10DeviceValueCreate(client_extension.Create, A10DeviceValueExtension):
 
     shell_command = 'a10-device-value-create'
-    list_columns = ['key_id', 'device_id', 'name', 'description']
+    list_columns = ['key_id', 'device_id', 'value', 'description']
 
 
 class A10DeviceValueDelete(client_extension.Delete, A10DeviceValueExtension):
@@ -190,4 +190,4 @@ class A10DeviceValueUpdate(client_extension.Update, A10DeviceValueExtension):
     """Update A10 vThunder Instance"""
 
     shell_command = 'a10-device-value-update'
-    list_columns = ['key_id', 'device_id', 'name', 'description']
+    list_columns = ['key_id', 'device_id', 'value', 'description']
