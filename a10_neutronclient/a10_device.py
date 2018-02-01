@@ -92,6 +92,8 @@ class DeviceCreate(client_extension.Create, DeviceExtension):
     shell_command = 'a10-device-create'
     list_columns = ['name', 'host', 'api_version']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
 
 class DeviceDelete(client_extension.Delete, DeviceExtension):
     """Delete A10 vThunder Instance"""
