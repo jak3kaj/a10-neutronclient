@@ -48,6 +48,9 @@ class VThunderCreate(client_extension.Create, VThunderExtension):
     shell_command = 'a10-vthunder-create'
     list_columns = ['name', 'host', 'nova_instance_id']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
+
 
 class VThunderDelete(client_extension.Delete, VThunderExtension):
     """Delete A10 vThunder Instance"""
@@ -60,6 +63,9 @@ class VThunderUpdate(client_extension.Update, VThunderExtension):
 
     shell_command = "a10-vthunder-update"
     list_columns = ["name", "host", "nova_instance_id", "api_version"]
+
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
 
 
 class DeviceExtension(client_extension.ClientExtension):
@@ -95,6 +101,7 @@ class DeviceCreate(client_extension.Create, DeviceExtension):
     def add_known_arguments(self, parser):
             self._add_known_arguments(parser, ['name'])
 
+
 class DeviceDelete(client_extension.Delete, DeviceExtension):
     """Delete A10 vThunder Instance"""
 
@@ -107,6 +114,9 @@ class DeviceUpdate(client_extension.Update, DeviceExtension):
     shell_command = "a10-device-update"
     list_columns = ["name", "host", 'api_version']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
+
 
 class A10DeviceKeyExtension(client_extension.ClientExtension):
 
@@ -118,6 +128,7 @@ class A10DeviceKeyExtension(client_extension.ClientExtension):
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
+
 
 class A10DeviceKeyList(client_extension.List, A10DeviceKeyExtension):
     """List current A10 vThunder instances"""
@@ -137,6 +148,9 @@ class A10DeviceKeyCreate(client_extension.Create, A10DeviceKeyExtension):
     shell_command = 'a10-device-key-create'
     list_columns = ['name', 'description']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
+
 
 class A10DeviceKeyDelete(client_extension.Delete, A10DeviceKeyExtension):
     """Delete A10 vThunder Instance"""
@@ -150,6 +164,9 @@ class A10DeviceKeyUpdate(client_extension.Update, A10DeviceKeyExtension):
     shell_command = 'a10-device-key-update'
     list_columns = ['name', 'description']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
+
 
 class A10DeviceValueExtension(client_extension.ClientExtension):
 
@@ -161,6 +178,7 @@ class A10DeviceValueExtension(client_extension.ClientExtension):
     object_path = '/%s' % resource_plural
     resource_path = '/%s/%%s' % resource_plural
     versions = ['2.0']
+
 
 class A10DeviceValueList(client_extension.List, A10DeviceValueExtension):
     """List current A10 vThunder instances"""
@@ -181,6 +199,9 @@ class A10DeviceValueCreate(client_extension.Create, A10DeviceValueExtension):
     shell_command = 'a10-device-value-create'
     list_columns = ['key_id', 'device_id', 'value', 'description']
 
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
+
 
 class A10DeviceValueDelete(client_extension.Delete, A10DeviceValueExtension):
     """Delete A10 vThunder Instance"""
@@ -193,3 +214,6 @@ class A10DeviceValueUpdate(client_extension.Update, A10DeviceValueExtension):
 
     shell_command = 'a10-device-value-update'
     list_columns = ['key_id', 'device_id', 'value', 'description']
+
+    def add_known_arguments(self, parser):
+            self._add_known_arguments(parser, ['name'])
