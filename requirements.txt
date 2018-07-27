@@ -3,4 +3,4 @@
 # specifiy versionsi
 # Oldest version of neutronclient supporting extensions.
 python-neutronclient>=2.3.2
-a10-openstack-lib>=0.2.0
+a10-openstack-lib>=0.2.1
