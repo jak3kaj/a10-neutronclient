@@ -60,12 +60,21 @@ class ClientExtension(extension.NeutronClientExtension):
 
         parser.add_argument(self._arg_name(name, types), dest=name)
 
-    def _add_known_arguments(self, parser, required, ignore=[], where=lambda x: True):
+    def _add_known_arguments(
+            self,
+            parser,
+            required,
+            ignore=[],
+            where=lambda x: True):
         attributes = self.resource_attribute_map[self.resource_plural]
         for name in required:
             parser.add_argument(name)
         for name, attr in attributes.items():
-            if name in required or name in _NEUTRON_OPTIONS or name in ignore or not where(attr):
+            if (
+              name in required or
+              name in _NEUTRON_OPTIONS or
+              name in ignore or
+              not where(attr)):
                 continue
             types = attr.get('validate', {})
 
@@ -97,7 +106,8 @@ class ClientExtension(extension.NeutronClientExtension):
     def args2body(self, parsed_args):
         attributes = self.resource_attribute_map[self.resource_plural]
         body = {}
-        neutronV20.update_dict(parsed_args, body, [a for a in attributes if a != 'id'])
+        neutronV20.update_dict(
+            parsed_args, body, [a for a in attributes if a != 'id'])
 
         for k in body:
             types = attributes.get(k, {}).get('validate', {})
