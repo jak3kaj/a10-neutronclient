@@ -114,9 +114,6 @@ class DeviceUpdate(client_extension.Update, DeviceExtension):
     shell_command = "a10-device-update"
     list_columns = ["name", "host", 'api_version']
 
-    #def add_known_arguments(self, parser):
-            #self._add_known_arguments(parser, ['name'])
-
 
 class A10DeviceKeyExtension(client_extension.ClientExtension):
 
