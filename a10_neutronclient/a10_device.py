@@ -33,13 +33,8 @@ class VThunderList(client_extension.List, VThunderExtension):
     """List current A10 vThunder instances"""
 
     shell_command = 'a10-vthunder-list'
-    list_columns = [
-                'id',
-                'name',
-                'host',
-                'api_version',
-                'nova_instance_id',
-                'description']
+    list_columns = ['id', 'name', 'host', 'api_version', 'nova_instance_id',
+                    'description']
 
 
 class VThunderShow(client_extension.Show, VThunderExtension):
@@ -68,11 +63,7 @@ class VThunderUpdate(client_extension.Update, VThunderExtension):
     """Update A10 vThunder Instance"""
 
     shell_command = 'a10-vthunder-update'
-    list_columns = [
-                'name',
-                'host',
-                'nova_instance_id',
-                'api_version']
+    list_columns = ['name', 'host', 'nova_instance_id', 'api_version']
 
     def add_known_arguments(self, parser):
             self._add_known_arguments(parser, ['name'])
@@ -94,14 +85,8 @@ class DeviceList(client_extension.List, DeviceExtension):
     """List current A10 vThunder instances"""
 
     shell_command = 'a10-device-list'
-    list_columns = [
-                'id',
-                'name',
-                'protocol',
-                'host',
-                'port',
-                'api_version',
-                'description']
+    list_columns = ['id', 'name', 'protocol', 'host', 'port', 'api_version',
+                    'description']
 
 
 class DeviceShow(client_extension.Show, DeviceExtension):
@@ -113,19 +98,11 @@ class DeviceShow(client_extension.Show, DeviceExtension):
 class DeviceCreate(client_extension.Create, DeviceExtension):
 
     shell_command = 'a10-device-create'
-    list_columns = [
-                'name',
-                'host',
-                'protocol',
-                'port',
-                'api_version']
+    list_columns = ['name', 'host', 'protocol', 'port', 'api_version']
 
     def add_known_arguments(self, parser):
-            self._add_known_arguments(parser, [
-                                            'host',
-                                            'username',
-                                            'password',
-                                            'api_version'])
+            self._add_known_arguments(parser, ['host', 'username',
+                                               'password', 'api_version'])
 
 
 class DeviceDelete(client_extension.Delete, DeviceExtension):

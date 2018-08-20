@@ -60,21 +60,17 @@ class ClientExtension(extension.NeutronClientExtension):
 
         parser.add_argument(self._arg_name(name, types), dest=name)
 
-    def _add_known_arguments(
-            self,
-            parser,
-            required,
-            ignore=[],
-            where=lambda x: True):
+    def _add_known_arguments(self, parser, required, ignore=[],
+                             where=lambda x: True):
         attributes = self.resource_attribute_map[self.resource_plural]
         for name in required:
             parser.add_argument(name)
         for name, attr in attributes.items():
             if (
-              name in required or
-              name in _NEUTRON_OPTIONS or
-              name in ignore or
-              not where(attr)):
+                    name in required or
+                    name in _NEUTRON_OPTIONS or
+                    name in ignore or
+                    not where(attr)):
                 continue
             types = attr.get('validate', {})
 
@@ -118,10 +114,8 @@ class ClientExtension(extension.NeutronClientExtension):
 
     def get_resource_id(self, resource, name_or_id):
         client = self.get_client()
-        return neutronV20.find_resourceid_by_name_or_id(
-            client,
-            resource,
-            name_or_id)
+        return neutronV20.find_resourceid_by_name_or_id(client, resource,
+                                                        name_or_id)
 
 
 class List(extension.ClientExtensionList):
@@ -133,9 +127,7 @@ class Create(extension.ClientExtensionCreate):
 
     def _add_known_arguments(self, parser, required, ignore=[]):
         super(Create, self)._add_known_arguments(
-            parser,
-            required,
-            ignore=ignore,
+            parser, required, ignore=ignore,
             where=lambda attr: attr.get('allow_post'))
 
     def add_known_arguments(self, parser):
@@ -146,9 +138,7 @@ class Update(extension.ClientExtensionUpdate):
 
     def _add_known_arguments(self, parser, required, ignore=[]):
         super(Update, self)._add_known_arguments(
-            parser,
-            required,
-            ignore=ignore,
+            parser, required, ignore=ignore,
             where=lambda attr: attr.get('allow_put'))
 
     def add_known_arguments(self, parser):
