@@ -47,10 +47,14 @@ class VThunderCreate(client_extension.Create, VThunderExtension):
     """Create A10 vThunder Instance"""
 
     shell_command = 'a10-vthunder-create'
-    list_columns = ['name', 'host', 'nova_instance_id']
+    list_columns = ['nova-flavor', 'glance-image', 'api-version',
+                    'management-network', 'data-neteworks']
 
     def add_known_arguments(self, parser):
-            self._add_known_arguments(parser, ['name'])
+            self._add_known_arguments(
+                parser, ['flavor', 'image', 'username', 'password',
+                         'api-version', 'management-network',
+                         'data-neteworks'])
 
 
 class VThunderDelete(client_extension.Delete, VThunderExtension):
@@ -63,10 +67,8 @@ class VThunderUpdate(client_extension.Update, VThunderExtension):
     """Update A10 vThunder Instance"""
 
     shell_command = 'a10-vthunder-update'
-    list_columns = ['name', 'host', 'nova_instance_id', 'api_version']
-
-    def add_known_arguments(self, parser):
-            self._add_known_arguments(parser, ['name'])
+    list_columns = ['nova-flavor', 'glance-image', 'api-version',
+                    'management-network', 'data-neteworks']
 
 
 class DeviceExtension(client_extension.ClientExtension):
@@ -86,7 +88,7 @@ class DeviceList(client_extension.List, DeviceExtension):
 
     shell_command = 'a10-device-list'
     list_columns = ['id', 'name', 'protocol', 'host', 'port', 'api_version',
-                    'description']
+                    'description','autosnat']
 
 
 class DeviceShow(client_extension.Show, DeviceExtension):

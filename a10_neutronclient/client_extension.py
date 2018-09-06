@@ -70,7 +70,8 @@ class ClientExtension(extension.NeutronClientExtension):
                     name in required or
                     name in _NEUTRON_OPTIONS or
                     name in ignore or
-                    not where(attr)):
+                    not where(attr) or
+                    attr.get('is_a10_opt', False)):
                 continue
             types = attr.get('validate', {})
 
