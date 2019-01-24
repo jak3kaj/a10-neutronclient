@@ -66,11 +66,10 @@ class ClientExtension(extension.NeutronClientExtension):
         for name in required:
             parser.add_argument(name)
         for name, attr in attributes.items():
-            if (
-                    name in required or
-                    name in _NEUTRON_OPTIONS or
-                    name in ignore or
-                    not where(attr)):
+            if (name in
+                    required or name in
+                    _NEUTRON_OPTIONS or name in
+                    ignore or not where(attr)):
                 continue
             types = attr.get('validate', {})
 

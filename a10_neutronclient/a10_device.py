@@ -88,7 +88,7 @@ class DeviceList(client_extension.List, DeviceExtension):
 
     shell_command = 'a10-device-list'
     list_columns = ['id', 'name', 'protocol', 'host', 'port', 'api_version',
-                    'description','autosnat']
+                    'description', 'autosnat']
 
 
 class DeviceShow(client_extension.Show, DeviceExtension):
