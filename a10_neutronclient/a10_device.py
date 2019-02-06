@@ -88,7 +88,7 @@ class DeviceList(client_extension.List, DeviceExtension):
 
     shell_command = 'a10-device-list'
     list_columns = ['id', 'name', 'protocol', 'host', 'port', 'api_version',
-                    'description', 'autosnat']
+                    'description']
 
 
 class DeviceShow(client_extension.Show, DeviceExtension):
@@ -136,13 +136,14 @@ class A10DeviceKeyList(client_extension.List, A10DeviceKeyExtension):
     """List current A10 vThunder instances"""
 
     shell_command = 'a10-device-key-list'
-    list_columns = ['id', 'name', 'description']
+    list_columns = ['name', 'description']
 
 
 class A10DeviceKeyShow(client_extension.Show, A10DeviceKeyExtension):
     """Show A10 vThunder instance"""
 
     shell_command = 'a10-device-key-show'
+    list_columns = ['id', 'name', 'description', 'default_value', 'type']
 
 
 class A10DeviceKeyCreate(client_extension.Create, A10DeviceKeyExtension):
